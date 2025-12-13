@@ -17,6 +17,11 @@ import PaystubPreviewNonprofit from './PaystubPreviewNonprofit';
 import PaystubPreviewPremium from './PaystubPreviewPremium';
 import PaystubPreviewElite from './PaystubPreviewElite';
 import PaystubPreviewLuxury from './PaystubPreviewLuxury';
+import PaystubPreviewAcme1 from './PaystubPreviewAcme1';
+import PaystubPreviewAcme2 from './PaystubPreviewAcme2';
+import PaystubPreviewAcme3 from './PaystubPreviewAcme3';
+import PaystubPreviewAcme4 from './PaystubPreviewAcme4';
+import PaystubPreviewAcme5 from './PaystubPreviewAcme5';
 
 interface PaystubPreviewProps {
   paystub: Paystub;
@@ -60,6 +65,16 @@ export default function PaystubPreview({ paystub }: PaystubPreviewProps) {
       return <PaystubPreviewElite data={paystub} />;
     case 'luxury':
       return <PaystubPreviewLuxury data={paystub} />;
+    case 'acme1':
+      return <PaystubPreviewAcme1 data={paystub} />;
+    case 'acme2':
+      return <PaystubPreviewAcme2 data={paystub} />;
+    case 'acme3':
+      return <PaystubPreviewAcme3 data={paystub} />;
+    case 'acme4':
+      return <PaystubPreviewAcme4 data={paystub} />;
+    case 'acme5':
+      return <PaystubPreviewAcme5 data={paystub} />;
     case 'modern':
     default:
       return <PaystubPreviewModern paystub={paystub} />;

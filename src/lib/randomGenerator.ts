@@ -221,7 +221,8 @@ export async function generateRandomPaystub(): Promise<Paystub> {
   const templates = [
     'modern', 'classic', 'beaverton', 'professional', 'corporate', 'government',
     'tech', 'healthcare', 'minimalist', 'executive', 'retail', 'creative',
-    'financial', 'industrial', 'nonprofit', 'premium', 'elite', 'luxury'
+    'financial', 'industrial', 'nonprofit', 'premium', 'elite', 'luxury',
+    'acme1', 'acme2', 'acme3', 'acme4', 'acme5'
   ];
   const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
 

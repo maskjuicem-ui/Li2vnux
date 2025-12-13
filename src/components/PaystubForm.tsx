@@ -113,6 +113,11 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
             <option value="premium">Premium - Elegant amber and gold luxury style</option>
             <option value="elite">Elite - Modern gradient with sophisticated design</option>
             <option value="luxury">Luxury - Classic double-border formal elegance</option>
+            <option value="acme1">Acme Style 1 - Clean grey professional layout</option>
+            <option value="acme2">Acme Style 2 - Blue accent business design</option>
+            <option value="acme3">Acme Style 3 - Horizontal table format</option>
+            <option value="acme4">Acme Style 4 - Blue and grey combination</option>
+            <option value="acme5">Acme Style 5 - Simple with check stub</option>
           </select>
           <p className="text-xs text-slate-500 mt-2">
             {formData.template === 'classic'
@@ -149,6 +154,16 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
               ? 'Elite modern design with smooth gradients and contemporary card-based layout'
               : formData.template === 'luxury'
               ? 'Luxury formal design with classic double borders and traditional elegance'
+              : formData.template === 'acme1'
+              ? 'Acme style with clean grey headers and professional sectioned layout'
+              : formData.template === 'acme2'
+              ? 'Acme style with blue accents for a modern business appearance'
+              : formData.template === 'acme3'
+              ? 'Acme style with horizontal table format for detailed earnings breakdown'
+              : formData.template === 'acme4'
+              ? 'Acme style combining blue headers with grey background elements'
+              : formData.template === 'acme5'
+              ? 'Acme style with simple design and detachable check stub section'
               : 'Modern template with colorful gradients and enhanced visual appeal'}
           </p>
         </div>
