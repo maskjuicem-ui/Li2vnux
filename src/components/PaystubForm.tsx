@@ -97,7 +97,7 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
           >
             <option value="modern">Modern Design - Colorful gradient with detailed sections</option>
             <option value="classic">Classic Design - Simple traditional layout</option>
-            <option value="beaverton">Beaverton School - Official district style</option>
+            <option value="beaverton">Beaverton - Official district/campus style</option>
             <option value="professional">Professional Corporate - Clean slate design</option>
             <option value="corporate">Corporate Formal - Double border business style</option>
             <option value="government">Government Official - Federal document style</option>
@@ -123,7 +123,7 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
             {formData.template === 'classic'
               ? 'Classic template with simple, traditional layout and clear sections'
               : formData.template === 'beaverton'
-              ? 'Beaverton template mimics official school district paystubs with clean borders'
+              ? 'Beaverton template for educational institutions with clean official borders'
               : formData.template === 'professional'
               ? 'Professional corporate design with clean slate color scheme'
               : formData.template === 'corporate'
@@ -216,23 +216,25 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
       </div>
 
       <div className="bg-white rounded-lg border border-slate-200 p-6">
-        <h3 className="text-lg font-semibold mb-4">School Information</h3>
+        <h3 className="text-lg font-semibold mb-4">Institution Information</h3>
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">School Name</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Institution Name</label>
             <input
               type="text"
               required
+              placeholder="e.g., Harvard University, MIT, Stanford High School, Oxford Elementary"
               value={formData.school_name}
               onChange={(e) => handleChange('school_name', e.target.value)}
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">School Location</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Institution Location</label>
             <input
               type="text"
               required
+              placeholder="e.g., Cambridge, MA 02138 | Stanford, CA 94305"
               value={formData.school_location}
               onChange={(e) => handleChange('school_location', e.target.value)}
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -240,9 +242,10 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">School Code</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Institution Code</label>
               <input
                 type="text"
+                placeholder="e.g., HRV-001, MIT-ENG"
                 value={formData.school_code}
                 onChange={(e) => handleChange('school_code', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -252,6 +255,7 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
               <label className="block text-sm font-medium text-slate-700 mb-1">Employer EIN</label>
               <input
                 type="text"
+                placeholder="e.g., 12-3456789"
                 value={formData.employer_ein}
                 onChange={(e) => handleChange('employer_ein', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -279,6 +283,7 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
             <input
               type="text"
               required
+              placeholder="e.g., Professor, Teacher, Lecturer, Administrator, Staff"
               value={formData.position}
               onChange={(e) => handleChange('position', e.target.value)}
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

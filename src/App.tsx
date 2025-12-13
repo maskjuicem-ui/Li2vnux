@@ -341,9 +341,9 @@ function App() {
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">
-            School Document Generator
+            Educational Institution Document Generator
           </h1>
-          <p className="text-slate-600">Create paystubs, certificates, and student tuition receipts</p>
+          <p className="text-slate-600">Create paystubs, certificates, and tuition receipts for schools, universities, and campuses</p>
         </div>
 
         <div className="flex gap-3 mb-6">
