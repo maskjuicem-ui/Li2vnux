@@ -22,6 +22,14 @@ const COUNTRIES = [
 ];
 
 const USA_SCHOOLS = [
+  { name: 'Lincoln Middle School', city: 'Phoenix', state: 'AZ', address: '800 N 1st Street', postal: '85004', phone: '(602) 555-0101', website: 'www.lincolnms.edu' },
+  { name: 'Roosevelt Junior High', city: 'Los Angeles', state: 'CA', address: '1531 W Olive Avenue', postal: '90012', phone: '(213) 555-0102', website: 'www.rooseveltjh.edu' },
+  { name: 'Jefferson Vocational School', city: 'Dallas', state: 'TX', address: '3825 E Campbell Avenue', postal: '75201', phone: '(214) 555-0103', website: 'www.jeffersonvoc.edu' },
+  { name: 'Washington Tech High', city: 'Houston', state: 'TX', address: '4950 S Lamar Boulevard', postal: '77002', phone: '(713) 555-0104', website: 'www.washingtontech.edu' },
+  { name: 'Kennedy Career Center', city: 'San Diego', state: 'CA', address: '4221 Balboa Avenue', postal: '92117', phone: '(619) 555-0105', website: 'www.kennedycc.edu' },
+  { name: 'Madison Technical Institute', city: 'Chicago', state: 'IL', address: '5005 Broadway', postal: '60640', phone: '(312) 555-0106', website: 'www.madisontech.edu' },
+  { name: 'Monroe Middle School', city: 'Philadelphia', state: 'PA', address: '1530 E Santa Clara Street', postal: '19103', phone: '(215) 555-0107', website: 'www.monroems.edu' },
+  { name: 'Adams Vocational High', city: 'San Antonio', state: 'TX', address: '1819 N Peak Street', postal: '78201', phone: '(210) 555-0108', website: 'www.adamsvoc.edu' },
   { name: 'Santa Fe College', city: 'Gainesville', state: 'FL', address: '3000 NW 83rd Street', postal: '32606', phone: '(352) 395-5000', website: 'www.sfcollege.edu' },
   { name: 'University of Florida', city: 'Gainesville', state: 'FL', address: '201 Criser Hall', postal: '32611', phone: '(352) 392-3261', website: 'www.ufl.edu' },
   { name: 'Miami Dade College', city: 'Miami', state: 'FL', address: '300 NE 2nd Avenue', postal: '33132', phone: '(305) 237-8888', website: 'www.mdc.edu' },
@@ -75,6 +83,14 @@ const USA_SCHOOLS = [
 ];
 
 const INTERNATIONAL_SCHOOLS = [
+  { name: 'SMP Negeri 1 Jakarta', city: 'Jakarta', state: 'DKI Jakarta', country: 'IDN', address: 'Jl. Budi Utomo No. 7', postal: '10710', phone: '+62 21 3841183', website: 'www.smpn1jakarta.sch.id' },
+  { name: 'SMP Negeri 5 Bandung', city: 'Bandung', state: 'Jawa Barat', country: 'IDN', address: 'Jl. Belitung No. 8', postal: '40115', phone: '+62 22 4231191', website: 'www.smpn5bandung.sch.id' },
+  { name: 'SMP Negeri 8 Surabaya', city: 'Surabaya', state: 'Jawa Timur', country: 'IDN', address: 'Jl. Ketintang Madya', postal: '60232', phone: '+62 31 8281123', website: 'www.smpn8surabaya.sch.id' },
+  { name: 'SMK Negeri 1 Jakarta', city: 'Jakarta', state: 'DKI Jakarta', country: 'IDN', address: 'Jl. Budi Utomo No. 7', postal: '10710', phone: '+62 21 3840541', website: 'www.smkn1jakarta.sch.id' },
+  { name: 'SMK Negeri 2 Bandung', city: 'Bandung', state: 'Jawa Barat', country: 'IDN', address: 'Jl. Ciliwung No. 4', postal: '40114', phone: '+62 22 4206288', website: 'www.smkn2bandung.sch.id' },
+  { name: 'SMK Negeri 1 Yogyakarta', city: 'Yogyakarta', state: 'DI Yogyakarta', country: 'IDN', address: 'Jl. Senopati No. 1', postal: '55121', phone: '+62 274 512148', website: 'www.smkn1yogya.sch.id' },
+  { name: 'SMK Negeri 3 Malang', city: 'Malang', state: 'Jawa Timur', country: 'IDN', address: 'Jl. Surabaya No. 1', postal: '65126', phone: '+62 341 551287', website: 'www.smkn3malang.sch.id' },
+  { name: 'SMK Telkom Bandung', city: 'Bandung', state: 'Jawa Barat', country: 'IDN', address: 'Jl. Gegerkalong Hilir', postal: '40152', phone: '+62 22 2006468', website: 'www.smktelkom-bdg.sch.id' },
   { name: 'University of Toronto', city: 'Toronto', state: 'ON', country: 'CAN', address: '27 Kings College Circle', postal: 'M5S 1A1', phone: '+1 (416) 978-2011', website: 'www.utoronto.ca' },
   { name: 'University of British Columbia', city: 'Vancouver', state: 'BC', country: 'CAN', address: '2329 West Mall', postal: 'V6T 1Z4', phone: '+1 (604) 822-2211', website: 'www.ubc.ca' },
   { name: 'McGill University', city: 'Montreal', state: 'QC', country: 'CAN', address: '845 Sherbrooke Street West', postal: 'H3A 0G4', phone: '+1 (514) 398-4455', website: 'www.mcgill.ca' },
@@ -106,9 +122,16 @@ const INTERNATIONAL_SCHOOLS = [
   { name: 'Delhi University', city: 'New Delhi', state: 'Delhi', country: 'IND', address: 'University Road', postal: '110007', phone: '+91 11 2766 7853', website: 'www.du.ac.in' },
   { name: 'University of Malaya', city: 'Kuala Lumpur', state: 'Wilayah Persekutuan', country: 'MYS', address: 'Jalan Universiti', postal: '50603', phone: '+60 3 7967 3000', website: 'www.um.edu.my' },
   { name: 'Universiti Teknologi Malaysia', city: 'Johor Bahru', state: 'Johor', country: 'MYS', address: 'Jalan Sultan Yahya Petra', postal: '54100', phone: '+60 7 553 3333', website: 'www.utm.my' },
+  { name: 'Universiti Putra Malaysia', city: 'Serdang', state: 'Selangor', country: 'MYS', address: 'Jalan Universiti 1', postal: '43400', phone: '+60 3 9769 1000', website: 'www.upm.edu.my' },
+  { name: 'Universiti Kebangsaan Malaysia', city: 'Bangi', state: 'Selangor', country: 'MYS', address: 'Jalan Yaacob Latif', postal: '43600', phone: '+60 3 8921 5555', website: 'www.ukm.my' },
   { name: 'Universitas Indonesia', city: 'Depok', state: 'Jawa Barat', country: 'IDN', address: 'Kampus UI Depok', postal: '16424', phone: '+62 21 7867222', website: 'www.ui.ac.id' },
   { name: 'Institut Teknologi Bandung', city: 'Bandung', state: 'Jawa Barat', country: 'IDN', address: 'Jl. Ganesha 10', postal: '40132', phone: '+62 22 250 0935', website: 'www.itb.ac.id' },
   { name: 'Universitas Gadjah Mada', city: 'Yogyakarta', state: 'DI Yogyakarta', country: 'IDN', address: 'Bulaksumur', postal: '55281', phone: '+62 274 588688', website: 'www.ugm.ac.id' },
+  { name: 'Institut Teknologi Sepuluh Nopember', city: 'Surabaya', state: 'Jawa Timur', country: 'IDN', address: 'Kampus ITS Sukolilo', postal: '60111', phone: '+62 31 5947754', website: 'www.its.ac.id' },
+  { name: 'Universitas Airlangga', city: 'Surabaya', state: 'Jawa Timur', country: 'IDN', address: 'Jl. Airlangga 4-6', postal: '60115', phone: '+62 31 5030252', website: 'www.unair.ac.id' },
+  { name: 'Universitas Diponegoro', city: 'Semarang', state: 'Jawa Tengah', country: 'IDN', address: 'Jl. Prof. Sudarto', postal: '50275', phone: '+62 24 7460024', website: 'www.undip.ac.id' },
+  { name: 'Universitas Padjadjaran', city: 'Bandung', state: 'Jawa Barat', country: 'IDN', address: 'Jl. Raya Bandung-Sumedang', postal: '45363', phone: '+62 22 7796400', website: 'www.unpad.ac.id' },
+  { name: 'Universitas Brawijaya', city: 'Malang', state: 'Jawa Timur', country: 'IDN', address: 'Jl. Veteran', postal: '65145', phone: '+62 341 551611', website: 'www.ub.ac.id' },
   { name: 'University of the Philippines', city: 'Quezon City', state: 'Metro Manila', country: 'PHL', address: 'Diliman', postal: '1101', phone: '+63 2 8981 8500', website: 'www.up.edu.ph' },
   { name: 'Ateneo de Manila University', city: 'Quezon City', state: 'Metro Manila', country: 'PHL', address: 'Katipunan Avenue', postal: '1108', phone: '+63 2 8426 6001', website: 'www.ateneo.edu' },
   { name: 'De La Salle University', city: 'Manila', state: 'Metro Manila', country: 'PHL', address: '2401 Taft Avenue', postal: '1004', phone: '+63 2 8524 4611', website: 'www.dlsu.edu.ph' },
