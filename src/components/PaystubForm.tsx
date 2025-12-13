@@ -103,6 +103,13 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
             <option value="government">Government Official - Federal document style</option>
             <option value="tech">Tech Company - Modern blue gradient</option>
             <option value="healthcare">Healthcare/Medical - Teal professional style</option>
+            <option value="minimalist">Minimalist - Clean black and white design</option>
+            <option value="executive">Executive - Luxury amber and gold style</option>
+            <option value="retail">Retail - Orange energetic team design</option>
+            <option value="creative">Creative - Purple and pink vibrant style</option>
+            <option value="financial">Financial - Professional emerald banking style</option>
+            <option value="industrial">Industrial - Bold yellow manufacturing style</option>
+            <option value="nonprofit">Nonprofit - Teal community organization style</option>
           </select>
           <p className="text-xs text-slate-500 mt-2">
             {formData.template === 'classic'
@@ -119,6 +126,20 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
               ? 'Tech company style with modern blue gradients and cards'
               : formData.template === 'healthcare'
               ? 'Healthcare/medical institution style with teal accents'
+              : formData.template === 'minimalist'
+              ? 'Minimalist design with bold black and white contrast for maximum clarity'
+              : formData.template === 'executive'
+              ? 'Executive luxury design with elegant amber and gold tones'
+              : formData.template === 'retail'
+              ? 'Retail and service industry style with energetic orange gradients'
+              : formData.template === 'creative'
+              ? 'Creative vibrant design with purple, pink, and orange colors'
+              : formData.template === 'financial'
+              ? 'Financial services professional design with emerald green tones'
+              : formData.template === 'industrial'
+              ? 'Industrial manufacturing style with bold yellow safety colors'
+              : formData.template === 'nonprofit'
+              ? 'Nonprofit organization design with community-focused teal tones'
               : 'Modern template with colorful gradients and enhanced visual appeal'}
           </p>
         </div>
