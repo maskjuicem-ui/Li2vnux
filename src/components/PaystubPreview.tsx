@@ -14,6 +14,9 @@ import PaystubPreviewCreative from './PaystubPreviewCreative';
 import PaystubPreviewFinancial from './PaystubPreviewFinancial';
 import PaystubPreviewIndustrial from './PaystubPreviewIndustrial';
 import PaystubPreviewNonprofit from './PaystubPreviewNonprofit';
+import PaystubPreviewPremium from './PaystubPreviewPremium';
+import PaystubPreviewElite from './PaystubPreviewElite';
+import PaystubPreviewLuxury from './PaystubPreviewLuxury';
 
 interface PaystubPreviewProps {
   paystub: Paystub;
@@ -51,6 +54,12 @@ export default function PaystubPreview({ paystub }: PaystubPreviewProps) {
       return <PaystubPreviewIndustrial paystub={paystub} />;
     case 'nonprofit':
       return <PaystubPreviewNonprofit paystub={paystub} />;
+    case 'premium':
+      return <PaystubPreviewPremium data={paystub} />;
+    case 'elite':
+      return <PaystubPreviewElite data={paystub} />;
+    case 'luxury':
+      return <PaystubPreviewLuxury data={paystub} />;
     case 'modern':
     default:
       return <PaystubPreviewModern paystub={paystub} />;

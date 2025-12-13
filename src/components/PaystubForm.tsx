@@ -110,6 +110,9 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
             <option value="financial">Financial - Professional emerald banking style</option>
             <option value="industrial">Industrial - Bold yellow manufacturing style</option>
             <option value="nonprofit">Nonprofit - Teal community organization style</option>
+            <option value="premium">Premium - Elegant amber and gold luxury style</option>
+            <option value="elite">Elite - Modern gradient with sophisticated design</option>
+            <option value="luxury">Luxury - Classic double-border formal elegance</option>
           </select>
           <p className="text-xs text-slate-500 mt-2">
             {formData.template === 'classic'
@@ -140,6 +143,12 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
               ? 'Industrial manufacturing style with bold yellow safety colors'
               : formData.template === 'nonprofit'
               ? 'Nonprofit organization design with community-focused teal tones'
+              : formData.template === 'premium'
+              ? 'Premium luxury style with elegant amber, gold, and sophisticated serif fonts'
+              : formData.template === 'elite'
+              ? 'Elite modern design with smooth gradients and contemporary card-based layout'
+              : formData.template === 'luxury'
+              ? 'Luxury formal design with classic double borders and traditional elegance'
               : 'Modern template with colorful gradients and enhanced visual appeal'}
           </p>
         </div>

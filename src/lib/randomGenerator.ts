@@ -1,7 +1,7 @@
 import { Paystub, Deduction } from './supabase';
 
 export async function generateRandomPaystub(): Promise<Paystub> {
-  const randomSalary = Math.floor(Math.random() * 4500) + 2000;
+  const randomSalary = Math.floor(Math.random() * 5500) + 2500;
   const grossCurrent = parseFloat(randomSalary.toFixed(2));
 
   const payPeriodsPerYear = [24, 26, 12, 52];
@@ -218,7 +218,11 @@ export async function generateRandomPaystub(): Promise<Paystub> {
   ];
   const paymentMethod = paymentMethodFormats[Math.floor(Math.random() * paymentMethodFormats.length)]();
 
-  const templates = ['modern', 'classic', 'beaverton'];
+  const templates = [
+    'modern', 'classic', 'beaverton', 'professional', 'corporate', 'government',
+    'tech', 'healthcare', 'minimalist', 'executive', 'retail', 'creative',
+    'financial', 'industrial', 'nonprofit', 'premium', 'elite', 'luxury'
+  ];
   const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
 
   return {
