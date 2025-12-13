@@ -129,13 +129,9 @@ export async function generateRandomCertificate(): Promise<Certificate> {
   const certNumber = certNumberFormats[Math.floor(Math.random() * certNumberFormats.length)]();
 
   const today = new Date();
-  const yearOffset = Math.floor(Math.random() * 5);
-  const monthOffset = Math.floor(Math.random() * 12);
-  const issueDate = new Date(
-    today.getFullYear() - yearOffset,
-    monthOffset,
-    Math.floor(Math.random() * 28) + 1
-  );
+  const daysAgo = Math.floor(Math.random() * 90);
+  const issueDate = new Date(today);
+  issueDate.setDate(today.getDate() - daysAgo);
 
   const description = `has successfully completed the requirements for teaching certification and is hereby authorized to teach in the field of ${fieldOfStudy}`;
 

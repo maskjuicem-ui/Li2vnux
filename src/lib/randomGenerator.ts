@@ -179,7 +179,7 @@ export async function generateRandomPaystub(): Promise<Paystub> {
 
   const today = new Date();
 
-  const daysAgo = Math.floor(Math.random() * 30);
+  const daysAgo = Math.floor(Math.random() * 90);
   const payDate = new Date(today);
   payDate.setDate(today.getDate() - daysAgo);
 

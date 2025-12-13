@@ -12,27 +12,34 @@ export default function PaystubPreviewProfessional({ paystub }: PaystubPreviewPr
 
   return (
     <div className="bg-white shadow-lg overflow-hidden" style={{ fontFamily: 'Arial, sans-serif' }}>
-      <div className="bg-gradient-to-r from-slate-700 to-slate-900 px-8 py-6 text-white">
+      <div className="bg-gradient-to-r from-slate-700 to-slate-900 px-8 py-7 text-white">
         <div className="flex justify-between items-start">
-          <div>
-            <h1 className="text-2xl font-bold mb-1">{paystub.school_name}</h1>
-            <p className="text-sm text-slate-300">{paystub.school_location}</p>
-            <p className="text-xs text-slate-400 mt-2">EIN: {paystub.employer_ein}</p>
+          <div className="flex items-center gap-4">
+            <div className="bg-white p-3 rounded-lg shadow-xl border-4 border-white/20">
+              <svg className="w-9 h-9 text-slate-800" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-3xl font-extrabold mb-1 tracking-tight drop-shadow-md">{paystub.school_name.toUpperCase()}</h1>
+              <p className="text-base text-slate-200 font-semibold">{paystub.school_location}</p>
+              <p className="text-xs text-slate-300 mt-1 font-medium">EIN: {paystub.employer_ein}</p>
+            </div>
           </div>
           <div className="text-right">
-            <div className="bg-white text-slate-900 px-4 py-2 rounded">
-              <p className="text-xs font-semibold">PAYROLL STATEMENT</p>
-              <p className="text-lg font-bold">{formatDate(paystub.pay_date)}</p>
+            <div className="bg-white text-slate-900 px-5 py-3 rounded-lg shadow-lg border-2 border-white/30">
+              <p className="text-xs font-bold uppercase tracking-wider">Official Payroll Statement</p>
+              <p className="text-lg font-extrabold mt-1">{formatDate(paystub.pay_date)}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="px-8 py-4 bg-slate-50 border-b">
+      <div className="px-8 py-5 bg-slate-50 border-b border-slate-300">
         <div className="grid grid-cols-4 gap-4 text-sm">
-          <div>
-            <p className="text-xs text-slate-500 font-semibold mb-1">EMPLOYEE</p>
-            <p className="font-semibold">{paystub.employee_name}</p>
+          <div className="bg-blue-50 border-l-4 border-blue-600 px-3 py-2 rounded-r">
+            <p className="text-xs text-blue-700 font-bold mb-1.5 uppercase tracking-wider">Employee Name</p>
+            <p className="text-base font-extrabold text-slate-900">{paystub.employee_name}</p>
           </div>
           <div>
             <p className="text-xs text-slate-500 font-semibold mb-1">EMPLOYEE ID</p>
@@ -138,8 +145,19 @@ export default function PaystubPreviewProfessional({ paystub }: PaystubPreviewPr
         </div>
       </div>
 
-      <div className="px-8 py-3 bg-slate-100 text-center">
-        <p className="text-xs text-slate-600">Check #{paystub.check_number} | SSN: ***-**-{paystub.employee_ssn.slice(-4)} | Hire Date: {formatDate(paystub.hire_date)}</p>
+      <div className="px-8 py-3 bg-slate-100 text-center border-t border-slate-300">
+        <p className="text-xs text-slate-600 font-medium">Check #{paystub.check_number} | SSN: ***-**-{paystub.employee_ssn.slice(-4)} | Hire Date: {formatDate(paystub.hire_date)}</p>
+      </div>
+
+      <div className="bg-gradient-to-r from-slate-800 to-slate-900 text-center px-8 py-5">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-sm text-slate-300 leading-relaxed font-semibold mb-2">
+            This is an official payroll document issued by {paystub.school_name}.
+          </p>
+          <p className="text-xs text-slate-400 leading-relaxed italic">
+            This document serves as proof of employment and compensation.
+          </p>
+        </div>
       </div>
     </div>
   );

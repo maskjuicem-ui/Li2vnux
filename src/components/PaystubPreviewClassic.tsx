@@ -32,22 +32,29 @@ export default function PaystubPreviewClassic({ paystub }: PaystubPreviewClassic
   return (
     <div className="bg-white shadow-lg overflow-hidden font-mono text-sm">
       <div className="px-8 py-6 flex justify-between items-start border-b-2 border-black">
-        <div>
-          <h1 className="text-xl font-bold mb-2">{paystub.school_name.toUpperCase()}</h1>
-          <p className="text-sm">{paystub.school_location}</p>
+        <div className="flex items-center gap-3">
+          <div className="bg-black p-2 rounded">
+            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <h1 className="text-xl font-extrabold mb-1">{paystub.school_name.toUpperCase()}</h1>
+            <p className="text-xs font-semibold">{paystub.school_location}</p>
+          </div>
         </div>
         <div className="text-right">
-          <h2 className="text-xl font-bold mb-2">EARNINGS STATEMENT</h2>
-          <p className="text-sm"><span className="font-bold">Pay Date:</span> {formatDate(paystub.pay_date)}</p>
-          <p className="text-sm"><span className="font-bold">Pay Period:</span> {formatDate(paystub.period_start)} - {formatDate(paystub.period_end)}</p>
+          <h2 className="text-xl font-extrabold mb-2 bg-black text-white px-3 py-1">EARNINGS STATEMENT</h2>
+          <p className="text-xs mt-2"><span className="font-extrabold">Pay Date:</span> {formatDate(paystub.pay_date)}</p>
+          <p className="text-xs"><span className="font-extrabold">Period:</span> {formatDate(paystub.period_start)} - {formatDate(paystub.period_end)}</p>
         </div>
       </div>
 
       <div className="px-8 py-4 border-b border-black">
         <table className="w-full text-xs">
           <tbody>
-            <tr>
-              <td className="py-1 font-bold w-1/3">EMPLOYEE NAME</td>
+            <tr className="bg-slate-100">
+              <td className="py-2 px-2 font-extrabold w-1/3">EMPLOYEE NAME</td>
               <td className="py-1 font-bold w-1/3">EMPLOYEE ID</td>
               <td className="py-1 font-bold w-1/3">DEPARTMENT</td>
             </tr>

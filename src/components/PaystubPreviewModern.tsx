@@ -18,21 +18,21 @@ export default function PaystubPreviewModern({ paystub }: PaystubPreviewModernPr
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -ml-24 -mb-24"></div>
         <div className="relative z-10">
           <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl">
-                <FileText className="w-8 h-8" />
+            <div className="flex items-center gap-4">
+              <div className="bg-white p-4 rounded-xl shadow-xl border-4 border-white/30">
+                <Building2 className="w-10 h-10 text-blue-700" strokeWidth={2.5} />
               </div>
               <div>
-                <h1 className="text-3xl font-bold tracking-tight">{paystub.school_name}</h1>
-                <p className="text-blue-100 text-sm mt-1 font-medium">Official Earnings Statement</p>
+                <h1 className="text-4xl font-extrabold tracking-tight drop-shadow-md">{paystub.school_name.toUpperCase()}</h1>
+                <p className="text-blue-50 text-base mt-2 font-semibold">Official Payroll Statement</p>
               </div>
             </div>
-            <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-              <p className="text-xs text-blue-100 font-medium">Pay Period</p>
-              <p className="text-sm font-bold">{formatDate(paystub.pay_date)}</p>
+            <div className="bg-white/20 backdrop-blur-sm px-5 py-3 rounded-xl border border-white/20 shadow-lg">
+              <p className="text-xs text-blue-200 font-bold uppercase tracking-wider">Pay Date</p>
+              <p className="text-base font-extrabold mt-1">{formatDate(paystub.pay_date)}</p>
             </div>
           </div>
-          <p className="text-blue-100 text-sm">{paystub.school_location}</p>
+          <p className="text-blue-100 text-base font-medium">{paystub.school_location}</p>
         </div>
       </div>
 
@@ -47,13 +47,13 @@ export default function PaystubPreviewModern({ paystub }: PaystubPreviewModernPr
               <p className="text-lg font-bold text-slate-900">{paystub.check_number}</p>
             </div>
           </div>
-          <div className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
-            <div className="bg-cyan-100 p-2 rounded-lg">
-              <Calendar className="w-5 h-5 text-cyan-600" />
+          <div className="flex items-center gap-3 bg-gradient-to-br from-cyan-50 to-blue-50 p-4 rounded-xl shadow-md border-2 border-cyan-200">
+            <div className="bg-cyan-600 p-2.5 rounded-lg shadow-md">
+              <Calendar className="w-5 h-5 text-white" strokeWidth={2.5} />
             </div>
             <div>
-              <p className="text-xs text-slate-500 font-semibold uppercase tracking-wide">Pay Date</p>
-              <p className="text-lg font-bold text-slate-900">{formatDate(paystub.pay_date)}</p>
+              <p className="text-xs text-cyan-700 font-bold uppercase tracking-wider">Pay Date</p>
+              <p className="text-lg font-extrabold text-slate-900">{formatDate(paystub.pay_date)}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
@@ -101,16 +101,16 @@ export default function PaystubPreviewModern({ paystub }: PaystubPreviewModernPr
         </div>
 
         <div className="bg-gradient-to-br from-teal-50 to-emerald-50 p-6 rounded-xl border border-teal-100">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-teal-600 p-2 rounded-lg">
-              <User className="w-5 h-5 text-white" />
+          <div className="flex items-center gap-3 mb-5">
+            <div className="bg-teal-600 p-2.5 rounded-lg shadow-md">
+              <User className="w-5 h-5 text-white" strokeWidth={2.5} />
             </div>
-            <h2 className="font-bold text-lg text-slate-900">Employee Information</h2>
+            <h2 className="font-extrabold text-xl text-slate-900">Employee Information</h2>
           </div>
           <div className="space-y-3 text-sm">
-            <div className="bg-white p-3 rounded-lg">
-              <span className="text-xs text-slate-500 font-semibold uppercase tracking-wide block mb-1">Employee Name</span>
-              <p className="font-bold text-slate-900">{paystub.employee_name}</p>
+            <div className="bg-teal-50 border-l-4 border-teal-600 p-4 rounded-r-lg shadow-sm">
+              <span className="text-xs text-teal-700 font-bold uppercase tracking-wider block mb-1.5">Employee Name</span>
+              <p className="text-lg font-extrabold text-slate-900 leading-tight">{paystub.employee_name}</p>
             </div>
             <div className="bg-white p-3 rounded-lg">
               <span className="text-xs text-slate-500 font-semibold uppercase tracking-wide block mb-1">Position</span>
@@ -238,6 +238,22 @@ export default function PaystubPreviewModern({ paystub }: PaystubPreviewModernPr
             <div className="h-px bg-slate-300 flex-1"></div>
             <p className="text-xs text-slate-500 font-medium px-4">This statement is for informational purposes. Keep for your records.</p>
             <div className="h-px bg-slate-300 flex-1"></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-r from-slate-800 to-slate-900 text-center px-8 py-6">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-sm text-slate-300 leading-relaxed font-semibold mb-2">
+            This is an official payroll document issued by {paystub.school_name}.
+          </p>
+          <p className="text-xs text-slate-400 leading-relaxed italic">
+            This document serves as proof of employment and compensation. For questions, contact the Payroll Department.
+          </p>
+          <div className="border-t border-slate-700 pt-3 mt-3">
+            <p className="text-xs text-slate-500">
+              Document Generated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+            </p>
           </div>
         </div>
       </div>

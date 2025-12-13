@@ -14,19 +14,26 @@ export default function PaystubPreviewCorporate({ paystub }: PaystubPreviewCorpo
     <div className="bg-white shadow-lg overflow-hidden" style={{ fontFamily: 'Times New Roman, serif' }}>
       <div className="border-4 border-double border-slate-800">
         <div className="px-8 py-6 bg-slate-50">
-          <div className="text-center border-b-2 border-slate-800 pb-4">
-            <h1 className="text-2xl font-bold uppercase tracking-wider">{paystub.school_name}</h1>
-            <p className="text-sm mt-1">{paystub.school_location}</p>
-            <p className="text-xs mt-2 font-semibold">OFFICIAL PAYROLL DOCUMENT</p>
+          <div className="text-center border-b-2 border-slate-800 pb-5 mb-6">
+            <div className="flex justify-center mb-3">
+              <div className="bg-slate-800 p-3 rounded-full">
+                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            <h1 className="text-3xl font-extrabold uppercase tracking-wider mb-2">{paystub.school_name}</h1>
+            <p className="text-base mt-2 font-semibold">{paystub.school_location}</p>
+            <p className="text-sm mt-3 font-bold bg-slate-800 text-white py-2 px-4 inline-block rounded">OFFICIAL PAYROLL DOCUMENT</p>
           </div>
 
           <div className="grid grid-cols-2 gap-8 mt-6">
             <div>
               <table className="w-full text-sm">
                 <tbody>
-                  <tr className="border-b border-slate-300">
-                    <td className="py-2 font-semibold">Employee Name:</td>
-                    <td className="py-2">{paystub.employee_name}</td>
+                  <tr className="border-b border-slate-300 bg-blue-50">
+                    <td className="py-3 px-3 font-bold">Employee Name:</td>
+                    <td className="py-3 px-3 font-extrabold text-slate-900">{paystub.employee_name}</td>
                   </tr>
                   <tr className="border-b border-slate-300">
                     <td className="py-2 font-semibold">Employee SSN:</td>
