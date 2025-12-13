@@ -28,6 +28,10 @@ const USA_SCHOOLS = [
   { name: 'Valencia College', city: 'Orlando', state: 'FL', address: '701 N Econlockhatchee Trail', postal: '32825', phone: '(407) 299-5000', website: 'www.valenciacollege.edu' },
   { name: 'Florida State College', city: 'Jacksonville', state: 'FL', address: '501 W State Street', postal: '32202', phone: '(904) 646-2300', website: 'www.fscj.edu' },
   { name: 'Broward College', city: 'Fort Lauderdale', state: 'FL', address: '111 E Las Olas Blvd', postal: '33301', phone: '(954) 201-7350', website: 'www.broward.edu' },
+  { name: 'Florida International University', city: 'Miami', state: 'FL', address: '11200 SW 8th Street', postal: '33199', phone: '(305) 348-2000', website: 'www.fiu.edu' },
+  { name: 'University of Central Florida', city: 'Orlando', state: 'FL', address: '4000 Central Florida Blvd', postal: '32816', phone: '(407) 823-2000', website: 'www.ucf.edu' },
+  { name: 'Florida State University', city: 'Tallahassee', state: 'FL', address: '600 W College Avenue', postal: '32306', phone: '(850) 644-2525', website: 'www.fsu.edu' },
+  { name: 'University of South Florida', city: 'Tampa', state: 'FL', address: '4202 E Fowler Avenue', postal: '33620', phone: '(813) 974-2011', website: 'www.usf.edu' },
   { name: 'Harvard University', city: 'Cambridge', state: 'MA', address: 'Massachusetts Hall', postal: '02138', phone: '(617) 495-1000', website: 'www.harvard.edu' },
   { name: 'Stanford University', city: 'Stanford', state: 'CA', address: '450 Serra Mall', postal: '94305', phone: '(650) 723-2300', website: 'www.stanford.edu' },
   { name: 'MIT', city: 'Cambridge', state: 'MA', address: '77 Massachusetts Avenue', postal: '02139', phone: '(617) 253-1000', website: 'www.mit.edu' },
@@ -42,25 +46,72 @@ const USA_SCHOOLS = [
   { name: 'Northwestern University', city: 'Evanston', state: 'IL', address: '633 Clark Street', postal: '60208', phone: '(847) 491-3741', website: 'www.northwestern.edu' },
   { name: 'Duke University', city: 'Durham', state: 'NC', address: '2138 Campus Drive', postal: '27708', phone: '(919) 684-8111', website: 'www.duke.edu' },
   { name: 'Boston University', city: 'Boston', state: 'MA', address: '1 Silber Way', postal: '02215', phone: '(617) 353-2000', website: 'www.bu.edu' },
+  { name: 'University of Washington', city: 'Seattle', state: 'WA', address: '1410 NE Campus Parkway', postal: '98195', phone: '(206) 543-2100', website: 'www.washington.edu' },
+  { name: 'University of Pennsylvania', city: 'Philadelphia', state: 'PA', address: '3451 Walnut Street', postal: '19104', phone: '(215) 898-5000', website: 'www.upenn.edu' },
+  { name: 'Johns Hopkins University', city: 'Baltimore', state: 'MD', address: '3400 N Charles Street', postal: '21218', phone: '(410) 516-8000', website: 'www.jhu.edu' },
+  { name: 'Cornell University', city: 'Ithaca', state: 'NY', address: 'Day Hall', postal: '14853', phone: '(607) 254-4636', website: 'www.cornell.edu' },
+  { name: 'University of Southern California', city: 'Los Angeles', state: 'CA', address: 'University Park', postal: '90089', phone: '(213) 740-2311', website: 'www.usc.edu' },
+  { name: 'Carnegie Mellon University', city: 'Pittsburgh', state: 'PA', address: '5000 Forbes Avenue', postal: '15213', phone: '(412) 268-2000', website: 'www.cmu.edu' },
+  { name: 'University of Chicago', city: 'Chicago', state: 'IL', address: '5801 S Ellis Avenue', postal: '60637', phone: '(773) 702-1234', website: 'www.uchicago.edu' },
+  { name: 'Vanderbilt University', city: 'Nashville', state: 'TN', address: '2201 West End Avenue', postal: '37235', phone: '(615) 322-7311', website: 'www.vanderbilt.edu' },
+  { name: 'Rice University', city: 'Houston', state: 'TX', address: '6100 Main Street', postal: '77005', phone: '(713) 348-0000', website: 'www.rice.edu' },
+  { name: 'Emory University', city: 'Atlanta', state: 'GA', address: '201 Dowman Drive', postal: '30322', phone: '(404) 727-6123', website: 'www.emory.edu' },
+  { name: 'University of Virginia', city: 'Charlottesville', state: 'VA', address: 'P.O. Box 400160', postal: '22904', phone: '(434) 924-0311', website: 'www.virginia.edu' },
+  { name: 'Georgetown University', city: 'Washington', state: 'DC', address: '37th & O Streets NW', postal: '20057', phone: '(202) 687-0100', website: 'www.georgetown.edu' },
+  { name: 'University of North Carolina', city: 'Chapel Hill', state: 'NC', address: 'South Building', postal: '27599', phone: '(919) 962-2211', website: 'www.unc.edu' },
+  { name: 'Georgia Institute of Technology', city: 'Atlanta', state: 'GA', address: 'North Avenue', postal: '30332', phone: '(404) 894-2000', website: 'www.gatech.edu' },
+  { name: 'University of California San Diego', city: 'La Jolla', state: 'CA', address: '9500 Gilman Drive', postal: '92093', phone: '(858) 534-2230', website: 'www.ucsd.edu' },
+  { name: 'University of Wisconsin', city: 'Madison', state: 'WI', address: '500 Lincoln Drive', postal: '53706', phone: '(608) 262-1234', website: 'www.wisc.edu' },
+  { name: 'Ohio State University', city: 'Columbus', state: 'OH', address: '281 W Lane Avenue', postal: '43210', phone: '(614) 292-6446', website: 'www.osu.edu' },
+  { name: 'University of Illinois', city: 'Urbana', state: 'IL', address: '601 E John Street', postal: '61801', phone: '(217) 333-1000', website: 'www.illinois.edu' },
+  { name: 'Penn State University', city: 'University Park', state: 'PA', address: '201 Old Main', postal: '16802', phone: '(814) 865-4700', website: 'www.psu.edu' },
+  { name: 'Purdue University', city: 'West Lafayette', state: 'IN', address: '610 Purdue Mall', postal: '47907', phone: '(765) 494-4600', website: 'www.purdue.edu' },
+  { name: 'University of Minnesota', city: 'Minneapolis', state: 'MN', address: '100 Church Street SE', postal: '55455', phone: '(612) 625-5000', website: 'www.umn.edu' },
+  { name: 'University of California Davis', city: 'Davis', state: 'CA', address: 'One Shields Avenue', postal: '95616', phone: '(530) 752-1011', website: 'www.ucdavis.edu' },
+  { name: 'Arizona State University', city: 'Tempe', state: 'AZ', address: 'University Drive', postal: '85287', phone: '(480) 965-9011', website: 'www.asu.edu' },
+  { name: 'University of Colorado Boulder', city: 'Boulder', state: 'CO', address: 'Regent Drive', postal: '80309', phone: '(303) 492-1411', website: 'www.colorado.edu' },
+  { name: 'University of California Irvine', city: 'Irvine', state: 'CA', address: 'Campus Drive', postal: '92697', phone: '(949) 824-5011', website: 'www.uci.edu' },
+  { name: 'University of Maryland', city: 'College Park', state: 'MD', address: 'Regents Drive', postal: '20742', phone: '(301) 405-1000', website: 'www.umd.edu' },
 ];
 
 const INTERNATIONAL_SCHOOLS = [
   { name: 'University of Toronto', city: 'Toronto', state: 'ON', country: 'CAN', address: '27 Kings College Circle', postal: 'M5S 1A1', phone: '+1 (416) 978-2011', website: 'www.utoronto.ca' },
   { name: 'University of British Columbia', city: 'Vancouver', state: 'BC', country: 'CAN', address: '2329 West Mall', postal: 'V6T 1Z4', phone: '+1 (604) 822-2211', website: 'www.ubc.ca' },
   { name: 'McGill University', city: 'Montreal', state: 'QC', country: 'CAN', address: '845 Sherbrooke Street West', postal: 'H3A 0G4', phone: '+1 (514) 398-4455', website: 'www.mcgill.ca' },
+  { name: 'University of Alberta', city: 'Edmonton', state: 'AB', country: 'CAN', address: '116 Street & 85 Avenue', postal: 'T6G 2R3', phone: '+1 (780) 492-3111', website: 'www.ualberta.ca' },
+  { name: 'McMaster University', city: 'Hamilton', state: 'ON', country: 'CAN', address: '1280 Main Street West', postal: 'L8S 4L8', phone: '+1 (905) 525-9140', website: 'www.mcmaster.ca' },
+  { name: 'University of Waterloo', city: 'Waterloo', state: 'ON', country: 'CAN', address: '200 University Avenue West', postal: 'N2L 3G1', phone: '+1 (519) 888-4567', website: 'www.uwaterloo.ca' },
   { name: 'University of Oxford', city: 'Oxford', state: 'Oxfordshire', country: 'GBR', address: 'Wellington Square', postal: 'OX1 2JD', phone: '+44 1865 270000', website: 'www.ox.ac.uk' },
   { name: 'University of Cambridge', city: 'Cambridge', state: 'Cambridgeshire', country: 'GBR', address: 'The Old Schools, Trinity Lane', postal: 'CB2 1TN', phone: '+44 1223 337733', website: 'www.cam.ac.uk' },
   { name: 'Imperial College London', city: 'London', state: 'Greater London', country: 'GBR', address: 'South Kensington Campus', postal: 'SW7 2AZ', phone: '+44 20 7589 5111', website: 'www.imperial.ac.uk' },
+  { name: 'University College London', city: 'London', state: 'Greater London', country: 'GBR', address: 'Gower Street', postal: 'WC1E 6BT', phone: '+44 20 7679 2000', website: 'www.ucl.ac.uk' },
+  { name: 'University of Edinburgh', city: 'Edinburgh', state: 'Scotland', country: 'GBR', address: 'Old College', postal: 'EH8 9YL', phone: '+44 131 650 1000', website: 'www.ed.ac.uk' },
+  { name: 'Kings College London', city: 'London', state: 'Greater London', country: 'GBR', address: 'Strand', postal: 'WC2R 2LS', phone: '+44 20 7836 5454', website: 'www.kcl.ac.uk' },
+  { name: 'University of Manchester', city: 'Manchester', state: 'Greater Manchester', country: 'GBR', address: 'Oxford Road', postal: 'M13 9PL', phone: '+44 161 306 6000', website: 'www.manchester.ac.uk' },
+  { name: 'London School of Economics', city: 'London', state: 'Greater London', country: 'GBR', address: 'Houghton Street', postal: 'WC2A 2AE', phone: '+44 20 7405 7686', website: 'www.lse.ac.uk' },
   { name: 'University of Sydney', city: 'Sydney', state: 'NSW', country: 'AUS', address: 'Camperdown', postal: '2006', phone: '+61 2 9351 2222', website: 'www.sydney.edu.au' },
   { name: 'University of Melbourne', city: 'Melbourne', state: 'VIC', country: 'AUS', address: 'Parkville', postal: '3010', phone: '+61 3 9035 5511', website: 'www.unimelb.edu.au' },
+  { name: 'Australian National University', city: 'Canberra', state: 'ACT', country: 'AUS', address: 'Acton', postal: '2601', phone: '+61 2 6125 5111', website: 'www.anu.edu.au' },
+  { name: 'University of Queensland', city: 'Brisbane', state: 'QLD', country: 'AUS', address: 'St Lucia', postal: '4072', phone: '+61 7 3365 1111', website: 'www.uq.edu.au' },
+  { name: 'Monash University', city: 'Melbourne', state: 'VIC', country: 'AUS', address: 'Clayton', postal: '3800', phone: '+61 3 9905 4000', website: 'www.monash.edu' },
+  { name: 'University of Auckland', city: 'Auckland', state: 'Auckland', country: 'NZL', address: '12 Grafton Road', postal: '1010', phone: '+64 9 373 7999', website: 'www.auckland.ac.nz' },
+  { name: 'University of Otago', city: 'Dunedin', state: 'Otago', country: 'NZL', address: '362 Leith Street', postal: '9016', phone: '+64 3 479 1100', website: 'www.otago.ac.nz' },
   { name: 'National University of Singapore', city: 'Singapore', state: 'Singapore', country: 'SGP', address: '21 Lower Kent Ridge Road', postal: '119077', phone: '+65 6516 6666', website: 'www.nus.edu.sg' },
   { name: 'Nanyang Technological University', city: 'Singapore', state: 'Singapore', country: 'SGP', address: '50 Nanyang Avenue', postal: '639798', phone: '+65 6791 1744', website: 'www.ntu.edu.sg' },
-  { name: 'University of Auckland', city: 'Auckland', state: 'Auckland', country: 'NZL', address: '12 Grafton Road', postal: '1010', phone: '+64 9 373 7999', website: 'www.auckland.ac.nz' },
+  { name: 'Singapore Management University', city: 'Singapore', state: 'Singapore', country: 'SGP', address: '81 Victoria Street', postal: '188065', phone: '+65 6828 0100', website: 'www.smu.edu.sg' },
   { name: 'IIT Bombay', city: 'Mumbai', state: 'Maharashtra', country: 'IND', address: 'Powai', postal: '400076', phone: '+91 22 2572 2545', website: 'www.iitb.ac.in' },
   { name: 'IIT Delhi', city: 'New Delhi', state: 'Delhi', country: 'IND', address: 'Hauz Khas', postal: '110016', phone: '+91 11 2659 1749', website: 'www.iitd.ac.in' },
+  { name: 'IIT Madras', city: 'Chennai', state: 'Tamil Nadu', country: 'IND', address: 'Sardar Patel Road', postal: '600036', phone: '+91 44 2257 4000', website: 'www.iitm.ac.in' },
+  { name: 'IIT Kanpur', city: 'Kanpur', state: 'Uttar Pradesh', country: 'IND', address: 'Kalyanpur', postal: '208016', phone: '+91 512 259 7002', website: 'www.iitk.ac.in' },
+  { name: 'Delhi University', city: 'New Delhi', state: 'Delhi', country: 'IND', address: 'University Road', postal: '110007', phone: '+91 11 2766 7853', website: 'www.du.ac.in' },
   { name: 'University of Malaya', city: 'Kuala Lumpur', state: 'Wilayah Persekutuan', country: 'MYS', address: 'Jalan Universiti', postal: '50603', phone: '+60 3 7967 3000', website: 'www.um.edu.my' },
+  { name: 'Universiti Teknologi Malaysia', city: 'Johor Bahru', state: 'Johor', country: 'MYS', address: 'Jalan Sultan Yahya Petra', postal: '54100', phone: '+60 7 553 3333', website: 'www.utm.my' },
   { name: 'Universitas Indonesia', city: 'Depok', state: 'Jawa Barat', country: 'IDN', address: 'Kampus UI Depok', postal: '16424', phone: '+62 21 7867222', website: 'www.ui.ac.id' },
+  { name: 'Institut Teknologi Bandung', city: 'Bandung', state: 'Jawa Barat', country: 'IDN', address: 'Jl. Ganesha 10', postal: '40132', phone: '+62 22 250 0935', website: 'www.itb.ac.id' },
+  { name: 'Universitas Gadjah Mada', city: 'Yogyakarta', state: 'DI Yogyakarta', country: 'IDN', address: 'Bulaksumur', postal: '55281', phone: '+62 274 588688', website: 'www.ugm.ac.id' },
   { name: 'University of the Philippines', city: 'Quezon City', state: 'Metro Manila', country: 'PHL', address: 'Diliman', postal: '1101', phone: '+63 2 8981 8500', website: 'www.up.edu.ph' },
+  { name: 'Ateneo de Manila University', city: 'Quezon City', state: 'Metro Manila', country: 'PHL', address: 'Katipunan Avenue', postal: '1108', phone: '+63 2 8426 6001', website: 'www.ateneo.edu' },
+  { name: 'De La Salle University', city: 'Manila', state: 'Metro Manila', country: 'PHL', address: '2401 Taft Avenue', postal: '1004', phone: '+63 2 8524 4611', website: 'www.dlsu.edu.ph' },
 ];
 
 const PAYMENT_METHODS = [
@@ -71,6 +122,15 @@ const PAYMENT_METHODS = [
 const TERMS = [
   'Fall 2024', 'Spring 2025', 'Summer 2025', 'Fall 2025', 'Spring 2026',
   'Summer 2026', 'Fall 2026', 'Winter 2025', 'Winter 2026'
+];
+
+const TEMPLATES = [
+  { value: 'academic', label: 'Academic - Traditional university design' },
+  { value: 'modern', label: 'Modern - Clean contemporary style' },
+  { value: 'premium', label: 'Premium - Luxury with gold accents' },
+  { value: 'corporate', label: 'Corporate - Professional business style' },
+  { value: 'minimalist', label: 'Minimalist - Simple black and white' },
+  { value: 'colorful', label: 'Colorful - Vibrant multi-color design' },
 ];
 
 const FIRST_NAMES = [
@@ -139,6 +199,7 @@ export default function StudentReceiptForm({ initialData, onSubmit, onCancel }: 
     payment_method: '',
     payment_date: new Date().toISOString().split('T')[0],
     notes: '',
+    template: 'academic',
   });
 
   const allSchools = country === 'USA' ? USA_SCHOOLS : INTERNATIONAL_SCHOOLS.filter(s => s.country === country);
@@ -539,6 +600,19 @@ export default function StudentReceiptForm({ initialData, onSubmit, onCancel }: 
               className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="2025-2026"
             />
+          </div>
+          <div className="col-span-2">
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Template Style</label>
+            <select
+              value={receipt.template || 'academic'}
+              onChange={(e) => setReceipt({ ...receipt, template: e.target.value })}
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            >
+              {TEMPLATES.map(template => (
+                <option key={template.value} value={template.value}>{template.label}</option>
+              ))}
+            </select>
           </div>
         </div>
       </div>

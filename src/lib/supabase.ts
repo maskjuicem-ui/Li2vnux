@@ -93,6 +93,7 @@ export interface StudentReceipt {
   payment_method: string;
   payment_date: string;
   notes: string;
+  template?: string;
   created_at?: string;
   updated_at?: string;
 }
