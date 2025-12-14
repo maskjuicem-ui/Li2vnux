@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Plus, List, Sparkles, Download, Eye, Trash2, Award, FileText, Receipt, Pencil } from 'lucide-react';
+import { Plus, List, Sparkles, Download, Eye, Trash2, Award, FileText, Receipt, Pencil, Shield } from 'lucide-react';
 import PaystubForm from './components/PaystubForm';
 import PaystubPreview from './components/PaystubPreview';
 import PaystubPreviewClassic from './components/PaystubPreviewClassic';
@@ -8,12 +8,14 @@ import CertificateForm from './components/CertificateForm';
 import CertificatePreview from './components/CertificatePreview';
 import StudentReceiptForm from './components/StudentReceiptForm';
 import StudentReceiptPreview from './components/StudentReceiptPreview';
-import { supabase, Paystub, Certificate, StudentReceipt, saveStudentReceipt, getStudentReceipts, deleteStudentReceipt } from './lib/supabase';
+import MilitaryServiceForm from './components/MilitaryServiceForm';
+import MilitaryServicePreview from './components/MilitaryServicePreview';
+import { supabase, Paystub, Certificate, StudentReceipt, MilitaryServiceRecord, saveStudentReceipt, getStudentReceipts, deleteStudentReceipt, saveMilitaryServiceRecord, getMilitaryServiceRecords, deleteMilitaryServiceRecord } from './lib/supabase';
 import { generateRandomPaystub } from './lib/randomGenerator';
 import { generateRandomCertificate } from './lib/randomCertificateGenerator';
 import { generatePDF } from './lib/pdfGenerator';
 
-type Mode = 'paystub' | 'certificate' | 'student';
+type Mode = 'paystub' | 'certificate' | 'student' | 'military';
 type View = 'list' | 'create' | 'preview';
 
 function App() {
@@ -22,9 +24,11 @@ function App() {
   const [paystubs, setPaystubs] = useState<Paystub[]>([]);
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [studentReceipts, setStudentReceipts] = useState<StudentReceipt[]>([]);
+  const [militaryRecords, setMilitaryRecords] = useState<MilitaryServiceRecord[]>([]);
   const [currentPaystub, setCurrentPaystub] = useState<Paystub | null>(null);
   const [currentCertificate, setCurrentCertificate] = useState<Certificate | null>(null);
   const [currentStudentReceipt, setCurrentStudentReceipt] = useState<StudentReceipt | null>(null);
+  const [currentMilitaryRecord, setCurrentMilitaryRecord] = useState<MilitaryServiceRecord | null>(null);
   const [loading, setLoading] = useState(false);
   const [bulkQuantity, setBulkQuantity] = useState<number>(10);
 
@@ -33,8 +37,10 @@ function App() {
       loadPaystubs();
     } else if (mode === 'certificate') {
       loadCertificates();
-    } else {
+    } else if (mode === 'student') {
       loadStudentReceipts();
+    } else {
+      loadMilitaryRecords();
     }
   }, [mode]);
 
@@ -71,6 +77,17 @@ function App() {
       setStudentReceipts(data);
     } catch (error) {
       console.error('Error loading student receipts:', error);
+    }
+    setLoading(false);
+  }
+
+  async function loadMilitaryRecords() {
+    setLoading(true);
+    try {
+      const data = await getMilitaryServiceRecords();
+      setMilitaryRecords(data);
+    } catch (error) {
+      console.error('Error loading military records:', error);
     }
     setLoading(false);
   }
@@ -164,6 +181,31 @@ function App() {
     setLoading(false);
   }
 
+  async function handleSaveMilitaryRecord(data: MilitaryServiceRecord) {
+    setLoading(true);
+    try {
+      let savedData;
+      if (data.id) {
+        const { data: result, error } = await supabase
+          .from('military_service_records')
+          .update(data)
+          .eq('id', data.id)
+          .select()
+          .single();
+        if (error) throw error;
+        savedData = result;
+      } else {
+        savedData = await saveMilitaryServiceRecord(data);
+      }
+      await loadMilitaryRecords();
+      setCurrentMilitaryRecord(savedData);
+      setView('preview');
+    } catch (error) {
+      console.error('Error saving military record:', error);
+    }
+    setLoading(false);
+  }
+
   async function handleDeletePaystub(id: string) {
     if (!confirm('Are you sure you want to delete this paystub?')) return;
 
@@ -203,6 +245,19 @@ function App() {
       await loadStudentReceipts();
     } catch (error) {
       console.error('Error deleting student receipt:', error);
+    }
+    setLoading(false);
+  }
+
+  async function handleDeleteMilitaryRecord(id: string) {
+    if (!confirm('Are you sure you want to delete this military record?')) return;
+
+    setLoading(true);
+    try {
+      await deleteMilitaryServiceRecord(id);
+      await loadMilitaryRecords();
+    } catch (error) {
+      console.error('Error deleting military record:', error);
     }
     setLoading(false);
   }
@@ -248,6 +303,21 @@ function App() {
 
     if (!error) {
       await loadStudentReceipts();
+    }
+    setLoading(false);
+  }
+
+  async function handleDeleteAllMilitaryRecords() {
+    if (!confirm(`Are you sure you want to delete all ${militaryRecords.length} military records? This action cannot be undone!`)) return;
+
+    setLoading(true);
+    const { error } = await supabase
+      .from('military_service_records')
+      .delete()
+      .neq('id', '00000000-0000-0000-0000-000000000000');
+
+    if (!error) {
+      await loadMilitaryRecords();
     }
     setLoading(false);
   }
@@ -325,6 +395,8 @@ function App() {
       await generatePDF('document-preview', `certificate-${currentCertificate.certificate_number}.pdf`);
     } else if (mode === 'student' && currentStudentReceipt) {
       await generatePDF('document-preview', `tuition-receipt-${currentStudentReceipt.receipt_number}.pdf`);
+    } else if (mode === 'military' && currentMilitaryRecord) {
+      await generatePDF('document-preview', `military-service-${currentMilitaryRecord.document_number}.pdf`);
     }
   }
 
@@ -334,6 +406,7 @@ function App() {
     setCurrentPaystub(null);
     setCurrentCertificate(null);
     setCurrentStudentReceipt(null);
+    setCurrentMilitaryRecord(null);
   }
 
   return (
@@ -380,6 +453,17 @@ function App() {
             <Receipt className="w-4 h-4" />
             Student Receipts
           </button>
+          <button
+            onClick={() => handleModeChange('military')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              mode === 'military'
+                ? 'bg-emerald-600 text-white'
+                : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+            }`}
+          >
+            <Shield className="w-4 h-4" />
+            Military Service
+          </button>
         </div>
 
         <div className="flex gap-3 mb-6">
@@ -392,17 +476,18 @@ function App() {
             }`}
           >
             <List className="w-4 h-4" />
-            All {mode === 'paystub' ? 'Paystubs' : mode === 'certificate' ? 'Certificates' : 'Student Receipts'}
+            All {mode === 'paystub' ? 'Paystubs' : mode === 'certificate' ? 'Certificates' : mode === 'student' ? 'Student Receipts' : 'Military Records'}
           </button>
           <button
             onClick={() => {
               setCurrentPaystub(null);
               setCurrentCertificate(null);
               setCurrentStudentReceipt(null);
+              setCurrentMilitaryRecord(null);
               setView('create');
             }}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-              view === 'create' && (mode === 'paystub' ? !currentPaystub : mode === 'certificate' ? !currentCertificate : !currentStudentReceipt)
+              view === 'create' && (mode === 'paystub' ? !currentPaystub : mode === 'certificate' ? !currentCertificate : mode === 'student' ? !currentStudentReceipt : !currentMilitaryRecord)
                 ? 'bg-blue-600 text-white'
                 : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
             }`}
@@ -410,7 +495,7 @@ function App() {
             <Plus className="w-4 h-4" />
             Create Manual
           </button>
-          {mode !== 'student' && (
+          {mode !== 'student' && mode !== 'military' && (
             <>
               <button
                 onClick={mode === 'paystub' ? handleGenerateRandomPaystub : handleGenerateRandomCertificate}
@@ -699,6 +784,86 @@ function App() {
           </div>
         )}
 
+        {view === 'list' && mode === 'military' && (
+          <div className="bg-white rounded-lg border border-slate-200 shadow-sm">
+            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-slate-900">Saved Military Service Records</h2>
+              {militaryRecords.length > 0 && (
+                <button
+                  onClick={handleDeleteAllMilitaryRecords}
+                  disabled={loading}
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors disabled:opacity-50"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Delete All ({militaryRecords.length})
+                </button>
+              )}
+            </div>
+            <div className="divide-y divide-slate-200">
+              {loading ? (
+                <div className="px-6 py-12 text-center text-slate-500">Loading...</div>
+              ) : militaryRecords.length === 0 ? (
+                <div className="px-6 py-12 text-center text-slate-500">
+                  No military service records yet. Create your first one!
+                </div>
+              ) : (
+                militaryRecords.map((record) => (
+                  <div
+                    key={record.id}
+                    className="px-6 py-4 hover:bg-slate-50 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-medium text-slate-900">{record.service_member_name}</h3>
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                            {record.service_branch}
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-600">
+                          {record.rank} • Document #{record.document_number}
+                        </p>
+                        <p className="text-sm text-slate-500">
+                          {record.status} • Issued: {new Date(record.issue_date).toLocaleDateString()}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => {
+                            setCurrentMilitaryRecord(record);
+                            setView('preview');
+                          }}
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          title="View"
+                        >
+                          <Eye className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            setCurrentMilitaryRecord(record);
+                            setView('create');
+                          }}
+                          className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
+                          title="Edit"
+                        >
+                          <Pencil className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteMilitaryRecord(record.id!)}
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          title="Delete"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
+
         {view === 'create' && mode === 'paystub' && (
           <PaystubForm
             initialData={currentPaystub || undefined}
@@ -719,6 +884,14 @@ function App() {
           <StudentReceiptForm
             initialData={currentStudentReceipt || undefined}
             onSubmit={handleSaveStudentReceipt}
+            onCancel={() => setView('list')}
+          />
+        )}
+
+        {view === 'create' && mode === 'military' && (
+          <MilitaryServiceForm
+            initialData={currentMilitaryRecord || undefined}
+            onSubmit={handleSaveMilitaryRecord}
             onCancel={() => setView('list')}
           />
         )}
@@ -776,6 +949,23 @@ function App() {
             </div>
             <div id="document-preview">
               <StudentReceiptPreview receipt={currentStudentReceipt} />
+            </div>
+          </div>
+        )}
+
+        {view === 'preview' && mode === 'military' && currentMilitaryRecord && (
+          <div>
+            <div className="flex justify-end mb-4">
+              <button
+                onClick={handleDownloadPDF}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                Download PDF
+              </button>
+            </div>
+            <div id="document-preview">
+              <MilitaryServicePreview record={currentMilitaryRecord} />
             </div>
           </div>
         )}

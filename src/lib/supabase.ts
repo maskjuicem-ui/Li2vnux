@@ -127,3 +127,58 @@ export async function deleteStudentReceipt(id: string) {
 
   if (error) throw error;
 }
+
+export interface MilitaryServiceRecord {
+  id?: string;
+  service_member_name: string;
+  rank: string;
+  service_branch: string;
+  service_number: string;
+  date_of_birth: string;
+  date_of_entry: string;
+  date_of_separation: string;
+  status: string;
+  document_number: string;
+  issue_date: string;
+  expiration_date: string;
+  issuing_authority: string;
+  template?: string;
+  home_address: string;
+  home_city: string;
+  home_state: string;
+  home_postal_code: string;
+  phone: string;
+  email: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export async function saveMilitaryServiceRecord(record: MilitaryServiceRecord) {
+  const { data, error } = await supabase
+    .from('military_service_records')
+    .insert([record])
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getMilitaryServiceRecords() {
+  const { data, error } = await supabase
+    .from('military_service_records')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) throw error;
+  return data as MilitaryServiceRecord[];
+}
+
+export async function deleteMilitaryServiceRecord(id: string) {
+  const { error } = await supabase
+    .from('military_service_records')
+    .delete()
+    .eq('id', id);
+
+  if (error) throw error;
+}
