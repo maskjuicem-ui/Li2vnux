@@ -142,8 +142,8 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
     const randomRank = ranks[Math.floor(Math.random() * ranks.length)];
     const randomStatus = SERVICE_STATUS[Math.floor(Math.random() * SERVICE_STATUS.length)];
 
-    const entryDate = new Date(2015 + Math.floor(Math.random() * 8), Math.floor(Math.random() * 12), 1 + Math.floor(Math.random() * 28));
-    const separationDate = new Date(2024, Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 28));
+    const entryDate = new Date(2016 + Math.floor(Math.random() * 8), Math.floor(Math.random() * 12), 1 + Math.floor(Math.random() * 28));
+    const separationDate = new Date(2025, Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 28));
     const issueDate = new Date();
     const expirationDate = new Date(issueDate);
     expirationDate.setFullYear(expirationDate.getFullYear() + 1);
