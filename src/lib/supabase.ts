@@ -138,6 +138,8 @@ export interface MilitaryServiceRecord {
   date_of_entry: string;
   date_of_separation: string;
   status: string;
+  document_type: string;
+  document_subtype: string;
   document_number: string;
   issue_date: string;
   expiration_date: string;

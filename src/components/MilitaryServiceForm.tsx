@@ -73,6 +73,33 @@ const SERVICE_STATUS = [
   'Veteran - Separated Within 12 Months',
 ];
 
+const DOCUMENT_TYPES = [
+  'Active Duty/Reservist',
+  'Veteran',
+  'Retiree',
+];
+
+const DOCUMENT_SUBTYPES = {
+  'Active Duty/Reservist': [
+    'Recent LES (within 90 days)',
+    'Current Orders (issued within 1 year)',
+  ],
+  'Veteran': [
+    'DD-214',
+    'VA ID',
+    'VA Benefits Letter',
+    'Discharge Certificate (DD256)',
+    'Driver\'s License with Veteran designation',
+  ],
+  'Retiree': [
+    'DD-214',
+    'VA ID',
+    'VA Benefits Letter',
+    'Retirement Certificate',
+    'Retirement Orders',
+  ],
+};
+
 const TEMPLATES = [
   { value: 'standard', label: 'Standard - Official military document' },
   { value: 'modern', label: 'Modern - Clean contemporary style' },
@@ -103,6 +130,7 @@ const US_STATES = [
 
 export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }: MilitaryServiceFormProps) {
   const [branch, setBranch] = useState(initialData?.service_branch || 'U.S. Army');
+  const [documentType, setDocumentType] = useState(initialData?.document_type || 'Active Duty/Reservist');
   const [record, setRecord] = useState<MilitaryServiceRecord>(initialData ? { ...initialData } : {
     service_member_name: '',
     rank: '',
@@ -112,6 +140,8 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
     date_of_entry: '',
     date_of_separation: '',
     status: 'Active - Final 12 Months',
+    document_type: 'Active Duty/Reservist',
+    document_subtype: 'Recent LES (within 90 days)',
     document_number: '',
     issue_date: new Date().toISOString().split('T')[0],
     expiration_date: '',
@@ -129,6 +159,10 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
     if (field === 'service_branch') {
       setBranch(value);
       setRecord(prev => ({ ...prev, [field]: value, rank: '' }));
+    } else if (field === 'document_type') {
+      setDocumentType(value);
+      const subtypes = DOCUMENT_SUBTYPES[value as keyof typeof DOCUMENT_SUBTYPES];
+      setRecord(prev => ({ ...prev, [field]: value, document_subtype: subtypes[0] }));
     } else {
       setRecord(prev => ({ ...prev, [field]: value }));
     }
@@ -141,6 +175,9 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
     const ranks = MILITARY_RANKS[randomBranch as keyof typeof MILITARY_RANKS];
     const randomRank = ranks[Math.floor(Math.random() * ranks.length)];
     const randomStatus = SERVICE_STATUS[Math.floor(Math.random() * SERVICE_STATUS.length)];
+    const randomDocType = DOCUMENT_TYPES[Math.floor(Math.random() * DOCUMENT_TYPES.length)];
+    const subtypes = DOCUMENT_SUBTYPES[randomDocType as keyof typeof DOCUMENT_SUBTYPES];
+    const randomDocSubtype = subtypes[Math.floor(Math.random() * subtypes.length)];
 
     const entryDate = new Date(2016 + Math.floor(Math.random() * 8), Math.floor(Math.random() * 12), 1 + Math.floor(Math.random() * 28));
     const separationDate = new Date(2025, Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 28));
@@ -151,6 +188,7 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
     const randomState = US_STATES[Math.floor(Math.random() * US_STATES.length)];
 
     setBranch(randomBranch);
+    setDocumentType(randomDocType);
     setRecord({
       service_member_name: `${firstName} ${lastName}`,
       rank: randomRank,
@@ -160,6 +198,8 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
       date_of_entry: entryDate.toISOString().split('T')[0],
       date_of_separation: separationDate.toISOString().split('T')[0],
       status: randomStatus,
+      document_type: randomDocType,
+      document_subtype: randomDocSubtype,
       document_number: `DOD-${Math.floor(Math.random() * 900000) + 100000}`,
       issue_date: issueDate.toISOString().split('T')[0],
       expiration_date: expirationDate.toISOString().split('T')[0],
@@ -269,6 +309,34 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
             >
               {SERVICE_STATUS.map(status => (
                 <option key={status} value={status}>{status}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Document Type</label>
+            <select
+              value={record.document_type}
+              onChange={(e) => handleChange('document_type', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            >
+              {DOCUMENT_TYPES.map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Document Subtype</label>
+            <select
+              value={record.document_subtype}
+              onChange={(e) => handleChange('document_subtype', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            >
+              {DOCUMENT_SUBTYPES[documentType as keyof typeof DOCUMENT_SUBTYPES].map(subtype => (
+                <option key={subtype} value={subtype}>{subtype}</option>
               ))}
             </select>
           </div>

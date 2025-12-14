@@ -68,6 +68,14 @@ export default function MilitaryServicePreview({ record }: MilitaryServicePrevie
               <div className="text-xs font-semibold text-gray-600 mb-1">SERVICE STATUS</div>
               <div className="text-base font-bold text-green-700">{record.status}</div>
             </div>
+            <div className="mb-3">
+              <div className="text-xs font-semibold text-gray-600 mb-1">DOCUMENT TYPE</div>
+              <div className="text-base font-bold text-gray-800">{record.document_type}</div>
+            </div>
+            <div className="mb-3">
+              <div className="text-xs font-semibold text-gray-600 mb-1">DOCUMENT SUBTYPE</div>
+              <div className="text-base font-bold text-gray-800">{record.document_subtype}</div>
+            </div>
           </div>
         </div>
 
