@@ -32,11 +32,11 @@ export default function PaystubPreviewWalterReed({ paystub }: PaystubPreviewWalt
   const retirement401k = paystub.retirement_401k || 0;
 
   return (
-    <div className="bg-white p-12 max-w-4xl mx-auto" style={{ fontFamily: 'Arial, sans-serif' }}>
-      <div className="flex justify-between items-start mb-8">
+    <div className="bg-white p-6 max-w-4xl mx-auto" style={{ fontFamily: 'Arial, sans-serif', fontSize: '13px' }}>
+      <div className="flex justify-between items-start mb-4">
         <div>
           {paystub.logo_url && (
-            <div className="w-32 h-32 mb-4 flex items-center justify-center">
+            <div className="w-20 h-20 mb-2 flex items-center justify-center">
               <img
                 src={paystub.logo_url}
                 alt="Logo"
@@ -44,24 +44,24 @@ export default function PaystubPreviewWalterReed({ paystub }: PaystubPreviewWalt
               />
             </div>
           )}
-          <div className="text-sm">
+          <div className="text-xs">
             <div className="font-bold text-gray-900">{employerName}</div>
             <div className="text-gray-600">{employerAddress}</div>
           </div>
         </div>
 
         <div className="text-right">
-          <h1 className="text-4xl font-bold text-green-600 mb-2">EARNINGS</h1>
-          <h2 className="text-4xl font-bold text-green-600">STATEMENT</h2>
+          <h1 className="text-2xl font-bold text-green-600 mb-1">EARNINGS</h1>
+          <h2 className="text-2xl font-bold text-green-600">STATEMENT</h2>
         </div>
       </div>
 
-      <div className="border-t-2 border-b-2 border-gray-300 py-6 my-6"></div>
+      <div className="border-t border-b border-gray-300 py-3 my-3"></div>
 
-      <div className="grid grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
-          <h3 className="font-bold text-gray-900 text-lg mb-4">EMPLOYEE INFORMATION</h3>
-          <div className="space-y-2 text-sm">
+          <h3 className="font-bold text-gray-900 text-sm mb-2">EMPLOYEE INFORMATION</h3>
+          <div className="space-y-1 text-xs">
             <div>
               <span className="text-gray-600">Name: </span>
               <span className="font-bold text-gray-900">{paystub.employee_name}</span>
@@ -86,8 +86,8 @@ export default function PaystubPreviewWalterReed({ paystub }: PaystubPreviewWalt
         </div>
 
         <div>
-          <h3 className="font-bold text-gray-900 text-lg mb-4">PAY SUMMARY</h3>
-          <div className="space-y-2 text-sm">
+          <h3 className="font-bold text-gray-900 text-sm mb-2">PAY SUMMARY</h3>
+          <div className="space-y-1 text-xs">
             <div>
               <span className="text-gray-600">Pay Period: </span>
               <span className="text-gray-900">{formatDate(payPeriodStart)} – {formatDate(payPeriodEnd)}</span>
@@ -101,87 +101,87 @@ export default function PaystubPreviewWalterReed({ paystub }: PaystubPreviewWalt
       </div>
 
       <div className="border border-gray-400">
-        <table className="w-full text-sm">
+        <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-gray-400">
-              <th className="text-left p-3 bg-gray-100 font-bold text-gray-900" colSpan={4}>EARNINGS</th>
-              <th className="text-left p-3 bg-gray-100 font-bold text-gray-900" colSpan={2}>DEDUCTIONS</th>
+              <th className="text-left p-2 bg-gray-100 font-bold text-gray-900" colSpan={4}>EARNINGS</th>
+              <th className="text-left p-2 bg-gray-100 font-bold text-gray-900" colSpan={2}>DEDUCTIONS</th>
             </tr>
             <tr className="border-b border-gray-400 bg-gray-50">
-              <th className="text-left p-3 font-bold text-gray-900">Description</th>
-              <th className="text-left p-3 font-bold text-gray-900">Hours</th>
-              <th className="text-left p-3 font-bold text-gray-900">Rate</th>
-              <th className="text-left p-3 font-bold text-gray-900">Amount</th>
-              <th className="text-left p-3 font-bold text-gray-900">Description</th>
-              <th className="text-right p-3 font-bold text-gray-900">Amount</th>
+              <th className="text-left p-2 font-bold text-gray-900">Description</th>
+              <th className="text-left p-2 font-bold text-gray-900">Hours</th>
+              <th className="text-left p-2 font-bold text-gray-900">Rate</th>
+              <th className="text-left p-2 font-bold text-gray-900">Amount</th>
+              <th className="text-left p-2 font-bold text-gray-900">Description</th>
+              <th className="text-right p-2 font-bold text-gray-900">Amount</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-gray-300">
-              <td className="p-3 text-gray-900">Base Salary</td>
-              <td className="p-3 text-gray-900 text-center">-</td>
-              <td className="p-3 text-gray-900 text-center">-</td>
-              <td className="p-3 text-gray-900">${regularEarnings.toFixed(2)}</td>
-              <td className="p-3 text-gray-900">Federal Tax</td>
-              <td className="p-3 text-gray-900 text-right">${federalTax.toFixed(2)}</td>
+              <td className="p-2 text-gray-900">Base Salary</td>
+              <td className="p-2 text-gray-900 text-center">-</td>
+              <td className="p-2 text-gray-900 text-center">-</td>
+              <td className="p-2 text-gray-900">${regularEarnings.toFixed(2)}</td>
+              <td className="p-2 text-gray-900">Federal Tax</td>
+              <td className="p-2 text-gray-900 text-right">${federalTax.toFixed(2)}</td>
             </tr>
             <tr className="border-b border-gray-300">
-              <td className="p-3 text-gray-900">Overtime</td>
-              <td className="p-3 text-gray-900 text-center">{overtimeHours}</td>
-              <td className="p-3 text-gray-900 text-center">${overtimeRate}/hr</td>
-              <td className="p-3 text-gray-900">${overtimeEarnings.toFixed(2)}</td>
-              <td className="p-3 text-gray-900">State Tax</td>
-              <td className="p-3 text-gray-900 text-right">${stateTax.toFixed(2)}</td>
+              <td className="p-2 text-gray-900">Overtime</td>
+              <td className="p-2 text-gray-900 text-center">{overtimeHours}</td>
+              <td className="p-2 text-gray-900 text-center">${overtimeRate}/hr</td>
+              <td className="p-2 text-gray-900">${overtimeEarnings.toFixed(2)}</td>
+              <td className="p-2 text-gray-900">State Tax</td>
+              <td className="p-2 text-gray-900 text-right">${stateTax.toFixed(2)}</td>
             </tr>
             <tr className="border-b border-gray-300">
-              <td className="p-3 text-gray-900">Bonus</td>
-              <td className="p-3 text-gray-900 text-center">-</td>
-              <td className="p-3 text-gray-900 text-center">-</td>
-              <td className="p-3 text-gray-900">${bonus.toFixed(2)}</td>
-              <td className="p-3 text-gray-900">Social Security</td>
-              <td className="p-3 text-gray-900 text-right">${socialSecurity.toFixed(2)}</td>
+              <td className="p-2 text-gray-900">Bonus</td>
+              <td className="p-2 text-gray-900 text-center">-</td>
+              <td className="p-2 text-gray-900 text-center">-</td>
+              <td className="p-2 text-gray-900">${bonus.toFixed(2)}</td>
+              <td className="p-2 text-gray-900">Social Security</td>
+              <td className="p-2 text-gray-900 text-right">${socialSecurity.toFixed(2)}</td>
             </tr>
             <tr className="border-b border-gray-300">
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900">Medicare</td>
-              <td className="p-3 text-gray-900 text-right">${medicare.toFixed(2)}</td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900">Medicare</td>
+              <td className="p-2 text-gray-900 text-right">${medicare.toFixed(2)}</td>
             </tr>
             <tr className="border-b border-gray-300">
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900">Health Insurance</td>
-              <td className="p-3 text-gray-900 text-right">${healthInsurance.toFixed(2)}</td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900">Health Insurance</td>
+              <td className="p-2 text-gray-900 text-right">${healthInsurance.toFixed(2)}</td>
             </tr>
             <tr className="border-b border-gray-400">
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900"></td>
-              <td className="p-3 text-gray-900">Retirement (401k)</td>
-              <td className="p-3 text-gray-900 text-right">${retirement401k.toFixed(2)}</td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900"></td>
+              <td className="p-2 text-gray-900">Retirement (401k)</td>
+              <td className="p-2 text-gray-900 text-right">${retirement401k.toFixed(2)}</td>
             </tr>
             <tr className="bg-gray-50 font-bold">
-              <td className="p-3 text-gray-900" colSpan={3}></td>
-              <td className="p-3 text-gray-900">
-                <span className="mr-2">Total Gross:</span>
+              <td className="p-2 text-gray-900" colSpan={3}></td>
+              <td className="p-2 text-gray-900">
+                <span className="mr-1">Total Gross:</span>
                 <span>${paystub.gross_pay_current.toFixed(2)}</span>
               </td>
-              <td className="p-3 text-gray-900">Total Deductions:</td>
-              <td className="p-3 text-gray-900 text-right">${paystub.total_deductions_current.toFixed(2)}</td>
+              <td className="p-2 text-gray-900">Total Deductions:</td>
+              <td className="p-2 text-gray-900 text-right">${paystub.total_deductions_current.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div className="grid grid-cols-2 gap-8 mt-8">
+      <div className="grid grid-cols-2 gap-4 mt-4">
         <div>
-          <h3 className="font-bold text-gray-900 text-lg mb-4">YEAR-TO-DATE (YTD)</h3>
-          <div className="space-y-2 text-sm">
+          <h3 className="font-bold text-gray-900 text-sm mb-2">YEAR-TO-DATE (YTD)</h3>
+          <div className="space-y-1 text-xs">
             <div className="flex justify-between">
               <span className="text-gray-600">YTD Gross Pay:</span>
               <span className="text-gray-900">${paystub.gross_pay_ytd.toFixed(2)}</span>
@@ -198,14 +198,14 @@ export default function PaystubPreviewWalterReed({ paystub }: PaystubPreviewWalt
         </div>
 
         <div>
-          <h3 className="font-bold text-gray-900 text-lg mb-4">NET PAY DISTRIBUTION</h3>
-          <div className="bg-green-700 text-white p-6 text-center">
-            <div className="text-4xl font-bold">${paystub.net_pay_current.toFixed(2)}</div>
+          <h3 className="font-bold text-gray-900 text-sm mb-2">NET PAY DISTRIBUTION</h3>
+          <div className="bg-green-700 text-white p-3 text-center rounded">
+            <div className="text-xl font-bold">${paystub.net_pay_current.toFixed(2)}</div>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 pt-6 border-t border-gray-300">
+      <div className="mt-4 pt-3 border-t border-gray-300">
         <p className="text-xs text-gray-500 italic text-center">
           This document is a representation of earnings and deductions for the period specified. Please retain for your records.
         </p>
