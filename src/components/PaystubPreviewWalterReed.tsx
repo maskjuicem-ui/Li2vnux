@@ -35,12 +35,15 @@ export default function PaystubPreviewWalterReed({ paystub }: PaystubPreviewWalt
     <div className="bg-white p-12 max-w-4xl mx-auto" style={{ fontFamily: 'Arial, sans-serif' }}>
       <div className="flex justify-between items-start mb-8">
         <div>
-          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center mb-4">
-            <div className="text-center">
-              <div className="text-yellow-400 font-bold text-3xl">🦁</div>
-              <div className="text-white text-xs font-bold mt-1">P9Q</div>
+          {paystub.logo_url && (
+            <div className="w-32 h-32 mb-4 flex items-center justify-center">
+              <img
+                src={paystub.logo_url}
+                alt="Logo"
+                className="max-w-full max-h-full object-contain"
+              />
             </div>
-          </div>
+          )}
           <div className="text-sm">
             <div className="font-bold text-gray-900">{employerName}</div>
             <div className="text-gray-600">{employerAddress}</div>
