@@ -4,6 +4,7 @@ import PaystubForm from './components/PaystubForm';
 import PaystubPreview from './components/PaystubPreview';
 import PaystubPreviewClassic from './components/PaystubPreviewClassic';
 import PaystubPreviewBeaverton from './components/PaystubPreviewBeaverton';
+import PaystubPreviewWalterReed from './components/PaystubPreviewWalterReed';
 import CertificateForm from './components/CertificateForm';
 import CertificatePreview from './components/CertificatePreview';
 import StudentReceiptForm from './components/StudentReceiptForm';
@@ -912,6 +913,8 @@ function App() {
                 <PaystubPreviewClassic paystub={currentPaystub} />
               ) : currentPaystub.template === 'beaverton' ? (
                 <PaystubPreviewBeaverton paystub={currentPaystub} />
+              ) : currentPaystub.template === 'walterreed' ? (
+                <PaystubPreviewWalterReed paystub={currentPaystub} />
               ) : (
                 <PaystubPreview paystub={currentPaystub} />
               )}

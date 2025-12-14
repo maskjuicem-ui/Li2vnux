@@ -118,6 +118,7 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
             <option value="acme3">Acme Style 3 - Horizontal table format</option>
             <option value="acme4">Acme Style 4 - Blue and grey combination</option>
             <option value="acme5">Acme Style 5 - Simple with check stub</option>
+            <option value="walterreed">Walter Reed P9Q - School earnings statement with logo</option>
           </select>
           <p className="text-xs text-slate-500 mt-2">
             {formData.template === 'classic'
@@ -164,6 +165,8 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
               ? 'Acme style combining blue headers with grey background elements'
               : formData.template === 'acme5'
               ? 'Acme style with simple design and detachable check stub section'
+              : formData.template === 'walterreed'
+              ? 'Walter Reed P9Q style with school logo badge and clean earnings statement format'
               : 'Modern template with colorful gradients and enhanced visual appeal'}
           </p>
         </div>
