@@ -6,9 +6,10 @@ interface CertificateFormProps {
   initialData?: Certificate;
   onSubmit: (data: Certificate) => void;
   onCancel: () => void;
+  loading?: boolean;
 }
 
-export default function CertificateForm({ initialData, onSubmit, onCancel }: CertificateFormProps) {
+export default function CertificateForm({ initialData, onSubmit, onCancel, loading }: CertificateFormProps) {
   const [formData, setFormData] = useState<Certificate>(
     initialData || {
       certificate_number: '',
@@ -258,15 +259,17 @@ export default function CertificateForm({ initialData, onSubmit, onCancel }: Cer
         <button
           type="button"
           onClick={onCancel}
-          className="px-6 py-2 border border-slate-300 text-slate-700 rounded-md hover:bg-slate-50 transition-colors"
+          disabled={loading}
+          className="px-6 py-2 border border-slate-300 text-slate-700 rounded-md hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          disabled={loading}
+          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {initialData?.id ? 'Update Certificate' : 'Save Certificate'}
+          {loading ? 'Saving...' : initialData?.id ? 'Update Certificate' : 'Save Certificate'}
         </button>
       </div>
     </form>

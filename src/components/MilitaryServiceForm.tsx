@@ -6,6 +6,7 @@ interface MilitaryServiceFormProps {
   initialData?: MilitaryServiceRecord;
   onSubmit: (record: MilitaryServiceRecord) => void;
   onCancel: () => void;
+  loading?: boolean;
 }
 
 const SERVICE_BRANCHES = [
@@ -128,7 +129,7 @@ const US_STATES = [
   'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY',
 ];
 
-export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }: MilitaryServiceFormProps) {
+export default function MilitaryServiceForm({ initialData, onSubmit, onCancel, loading }: MilitaryServiceFormProps) {
   const [branch, setBranch] = useState(initialData?.service_branch || 'U.S. Army');
   const [documentType, setDocumentType] = useState(initialData?.document_type || 'Active Duty/Reservist');
   const [record, setRecord] = useState<MilitaryServiceRecord>(initialData ? { ...initialData } : {
@@ -501,14 +502,16 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel }:
       <div className="flex gap-4">
         <button
           type="submit"
-          className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+          disabled={loading}
+          className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Save & Preview
+          {loading ? 'Saving...' : 'Save & Preview'}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
+          disabled={loading}
+          className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Cancel
         </button>

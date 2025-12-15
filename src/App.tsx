@@ -870,6 +870,7 @@ function App() {
             initialData={currentPaystub || undefined}
             onSubmit={handleSavePaystub}
             onCancel={() => setView('list')}
+            loading={loading}
           />
         )}
 
@@ -878,6 +879,7 @@ function App() {
             initialData={currentCertificate || undefined}
             onSubmit={handleSaveCertificate}
             onCancel={() => setView('list')}
+            loading={loading}
           />
         )}
 
@@ -886,6 +888,7 @@ function App() {
             initialData={currentStudentReceipt || undefined}
             onSubmit={handleSaveStudentReceipt}
             onCancel={() => setView('list')}
+            loading={loading}
           />
         )}
 
@@ -894,6 +897,7 @@ function App() {
             initialData={currentMilitaryRecord || undefined}
             onSubmit={handleSaveMilitaryRecord}
             onCancel={() => setView('list')}
+            loading={loading}
           />
         )}
 

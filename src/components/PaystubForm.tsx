@@ -6,9 +6,10 @@ interface PaystubFormProps {
   initialData?: Paystub;
   onSubmit: (data: Paystub) => void;
   onCancel: () => void;
+  loading?: boolean;
 }
 
-export default function PaystubForm({ initialData, onSubmit, onCancel }: PaystubFormProps) {
+export default function PaystubForm({ initialData, onSubmit, onCancel, loading }: PaystubFormProps) {
   const [formData, setFormData] = useState<Paystub>(
     initialData || {
       check_number: '',
@@ -555,15 +556,17 @@ export default function PaystubForm({ initialData, onSubmit, onCancel }: Paystub
         <button
           type="button"
           onClick={onCancel}
-          className="px-6 py-2 border border-slate-300 text-slate-700 rounded-md hover:bg-slate-50 transition-colors"
+          disabled={loading}
+          className="px-6 py-2 border border-slate-300 text-slate-700 rounded-md hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          disabled={loading}
+          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {initialData?.id ? 'Update Paystub' : 'Save Paystub'}
+          {loading ? 'Saving...' : initialData?.id ? 'Update Paystub' : 'Save Paystub'}
         </button>
       </div>
     </form>

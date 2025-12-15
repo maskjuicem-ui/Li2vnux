@@ -6,6 +6,7 @@ interface StudentReceiptFormProps {
   initialData?: StudentReceipt;
   onSubmit: (receipt: StudentReceipt) => void;
   onCancel: () => void;
+  loading?: boolean;
 }
 
 const COUNTRIES = [
@@ -197,7 +198,7 @@ const LAST_NAMES = [
   'Tan', 'Lim', 'Wong', 'Ong', 'Chan', 'Ng', 'Teo', 'Goh', 'Chua', 'Koh'
 ];
 
-export default function StudentReceiptForm({ initialData, onSubmit, onCancel }: StudentReceiptFormProps) {
+export default function StudentReceiptForm({ initialData, onSubmit, onCancel, loading }: StudentReceiptFormProps) {
   const [country, setCountry] = useState(initialData?.school_country || 'USA');
   const [receipt, setReceipt] = useState<StudentReceipt>(initialData ? { ...initialData } : {
     student_name: '',
@@ -749,15 +750,17 @@ export default function StudentReceiptForm({ initialData, onSubmit, onCancel }: 
         <button
           type="button"
           onClick={onCancel}
-          className="px-6 py-2 border border-slate-300 text-slate-700 rounded-md hover:bg-slate-50 transition-colors"
+          disabled={loading}
+          className="px-6 py-2 border border-slate-300 text-slate-700 rounded-md hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
+          disabled={loading}
+          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {initialData?.id ? 'Update Receipt' : 'Generate Receipt'}
+          {loading ? 'Saving...' : initialData?.id ? 'Update Receipt' : 'Generate Receipt'}
         </button>
       </div>
     </form>
