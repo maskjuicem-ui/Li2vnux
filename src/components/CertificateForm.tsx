@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Certificate } from '../lib/supabase';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Upload, X } from 'lucide-react';
 
 interface CertificateFormProps {
   initialData?: Certificate;
@@ -33,6 +33,27 @@ export default function CertificateForm({ initialData, onSubmit, onCancel, loadi
 
   const handleChange = (field: keyof Certificate, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(prev => ({
+          ...prev,
+          logo_url: reader.result as string
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeLogo = () => {
+    setFormData(prev => ({
+      ...prev,
+      logo_url: undefined
+    }));
   };
 
   const addSpecialization = () => {
@@ -85,6 +106,54 @@ export default function CertificateForm({ initialData, onSubmit, onCancel, loadi
               onChange={(e) => handleChange('issue_date', e.target.value)}
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg border border-slate-200 p-6">
+        <h3 className="text-lg font-semibold mb-4">Logo Upload (Optional)</h3>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Upload Institution/University Logo
+            </label>
+            <p className="text-xs text-slate-500 mb-3">
+              Upload a logo image (PNG, JPG, SVG). Recommended size: 200x200px
+            </p>
+
+            {formData.logo_url ? (
+              <div className="flex items-start gap-4">
+                <div className="w-32 h-32 border-2 border-slate-300 rounded-lg p-2 flex items-center justify-center bg-white">
+                  <img
+                    src={formData.logo_url}
+                    alt="Logo preview"
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={removeLogo}
+                  className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Remove Logo
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-4">
+                <label className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors cursor-pointer">
+                  <Upload className="w-4 h-4" />
+                  Choose File
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoUpload}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-sm text-slate-500">No file chosen</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

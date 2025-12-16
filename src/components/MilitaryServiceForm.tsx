@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { MilitaryServiceRecord } from '../lib/supabase';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Upload, X } from 'lucide-react';
 
 interface MilitaryServiceFormProps {
   initialData?: MilitaryServiceRecord;
@@ -167,6 +167,27 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel, l
     } else {
       setRecord(prev => ({ ...prev, [field]: value }));
     }
+  };
+
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setRecord(prev => ({
+          ...prev,
+          logo_url: reader.result as string
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeLogo = () => {
+    setRecord(prev => ({
+      ...prev,
+      logo_url: undefined
+    }));
   };
 
   const generateRandom = () => {
@@ -362,6 +383,54 @@ export default function MilitaryServiceForm({ initialData, onSubmit, onCancel, l
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
             />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <h3 className="text-lg font-semibold text-gray-700 border-b pb-2">Logo Upload (Optional)</h3>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Upload Military Branch Logo or Unit Insignia
+            </label>
+            <p className="text-xs text-gray-500 mb-3">
+              Upload a logo image (PNG, JPG, SVG). Recommended size: 200x200px
+            </p>
+
+            {record.logo_url ? (
+              <div className="flex items-start gap-4">
+                <div className="w-32 h-32 border-2 border-gray-300 rounded-lg p-2 flex items-center justify-center bg-white">
+                  <img
+                    src={record.logo_url}
+                    alt="Logo preview"
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={removeLogo}
+                  className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Remove Logo
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-4">
+                <label className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors cursor-pointer">
+                  <Upload className="w-4 h-4" />
+                  Choose File
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoUpload}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-sm text-gray-500">No file chosen</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

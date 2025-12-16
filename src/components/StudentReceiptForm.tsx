@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StudentReceipt, FeeItem } from '../lib/supabase';
-import { Sparkles, Plus, X } from 'lucide-react';
+import { Sparkles, Plus, X, Upload } from 'lucide-react';
 
 interface StudentReceiptFormProps {
   initialData?: StudentReceipt;
@@ -287,6 +287,27 @@ export default function StudentReceiptForm({ initialData, onSubmit, onCancel, lo
     setReceipt({ ...receipt, total_amount: total });
   };
 
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setReceipt(prev => ({
+          ...prev,
+          logo_url: reader.result as string
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeLogo = () => {
+    setReceipt(prev => ({
+      ...prev,
+      logo_url: undefined
+    }));
+  };
+
   const generateRandomData = () => {
     const randomSchool = allSchools[Math.floor(Math.random() * allSchools.length)];
     const randomFirstName = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
@@ -530,6 +551,54 @@ export default function StudentReceiptForm({ initialData, onSubmit, onCancel, lo
               onChange={(e) => setReceipt({ ...receipt, school_website: e.target.value })}
               className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-md border border-slate-200 p-8">
+        <h3 className="text-lg font-bold text-slate-900 mb-6">Logo Upload (Optional)</h3>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">
+              Upload School/University Logo
+            </label>
+            <p className="text-xs text-slate-500 mb-3">
+              Upload a logo image (PNG, JPG, SVG). Recommended size: 200x200px
+            </p>
+
+            {receipt.logo_url ? (
+              <div className="flex items-start gap-4">
+                <div className="w-32 h-32 border-2 border-slate-300 rounded-lg p-2 flex items-center justify-center bg-white">
+                  <img
+                    src={receipt.logo_url}
+                    alt="Logo preview"
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={removeLogo}
+                  className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Remove Logo
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-4">
+                <label className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors cursor-pointer">
+                  <Upload className="w-4 h-4" />
+                  Choose File
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoUpload}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-sm text-slate-500">No file chosen</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

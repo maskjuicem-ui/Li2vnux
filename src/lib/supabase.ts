@@ -57,6 +57,7 @@ export interface Paystub {
   net_pay_ytd: number;
   payment_method: string;
   template?: string;
+  logo_url?: string;
   created_at?: string;
   updated_at?: string;
 }
@@ -77,6 +78,7 @@ export interface Certificate {
   dean_title: string;
   principal_name: string;
   principal_title: string;
+  logo_url?: string;
   created_at?: string;
   updated_at?: string;
 }
@@ -111,6 +113,7 @@ export interface StudentReceipt {
   payment_date: string;
   notes: string;
   template?: string;
+  logo_url?: string;
   created_at?: string;
   updated_at?: string;
 }
@@ -162,6 +165,7 @@ export interface MilitaryServiceRecord {
   expiration_date: string;
   issuing_authority: string;
   template?: string;
+  logo_url?: string;
   home_address: string;
   home_city: string;
   home_state: string;
